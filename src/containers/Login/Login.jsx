@@ -1,17 +1,23 @@
 import {Component} from 'react'
 import { Form, Input, Button} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
+import {connect} from 'react-redux'
+import {reqLogin} from '../../api'
 
 import logo from './images/logo.jpg'
 import './css/Login.less'
 
 class Login extends Component{
   onFinish = (values) => {
-    // console.log('Received values of form: ', values);
-    alert('向服务器发起请求！！！！')
+    const {username,password} = values
+    reqLogin(username,password)
+    .then((result)=>{
+      console.log(result)
+    })
+    .catch((reason)=>{
+      console.log(reason)
+    })
   }
-
   pwdValidator = (rule,value,callback)=>{
     if(!value){
       callback('密码必须输入')
@@ -79,4 +85,5 @@ class Login extends Component{
   }
 }
 
-export default Login
+
+export default connect((state)=>({testnum:state.testnum}))(Login)
