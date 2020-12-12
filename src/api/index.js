@@ -1,5 +1,5 @@
-import axios from 'axios'
-import qs from 'querystring'
+import myAxios from '../Ajax'
+import {BASEURL} from '../config'
 
 export const reqLogin = (username,password)=> 
-axios.post('http://localhost:3000/login',qs.stringify({username,password}))
+myAxios.post(`${BASEURL}/login`,{username,password})

@@ -1,2 +1,2 @@
-export const TEST1 = 'addtest'
-export const TEST2 = 'subtest'
+export const SAVEUSERINFO = 'saveuserinfo'
+export const DELETEUSERINFO = 'deleteuserinfo'
