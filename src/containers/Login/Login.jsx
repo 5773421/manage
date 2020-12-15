@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 
 import {saveUserInfoAction} from '../../redux/actions/userInfo.js'
 import {reqLogin} from '../../api'
-import logo from './images/logo.jpg'
+import logo from '../../static/images/logo.jpg'
 import './css/Login.less'
 
 @connect((state)=>state.userInfo,{

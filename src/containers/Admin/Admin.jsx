@@ -14,7 +14,7 @@ import Role from '../Role/Role'
 import Bar from '../Bar/Bar'
 import Line from '../Line/Line'
 import Pie from '../Pie/Pie'
-
+import MenuLeft from './MenuLeft/MenuLeft'
 import './css/Admin.less'
 
 const {Footer,Sider,Content} = Layout
@@ -31,7 +31,9 @@ class Admin extends Component{
     if(isLogin){
       return (
         <Layout className = "admin">
-          <Sider className="sider">Sider</Sider>
+          <Sider width="250" className="sider">
+            <MenuLeft/>
+          </Sider>
           <Layout>
             <Header></Header>
             <Content className="content">

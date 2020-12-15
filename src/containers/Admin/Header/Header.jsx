@@ -7,9 +7,12 @@ import {deleteUserInfoAction} from '../../../redux/actions/userInfo.js'
 import {reqIp,reqWeather} from '../../../api'
 import './css/Header.less'
 import { connect } from 'react-redux'
+import categoryList from '../../../config/menu-config'
 
-
-@connect((state)=>state.userInfo,{
+@connect((state)=>({
+  userInfo:state.userInfo,
+  menuInfo:state.menuInfo
+}),{
   deleteUser:deleteUserInfoAction
 })
 @withRouter
@@ -21,7 +24,8 @@ class Header extends Component{
       weather:'晴',
       temperature:18,
     },
-    Screen:false
+    Screen:false,
+    title:''
   }
   componentDidMount(){
     this.intervalId = setInterval(() => {
@@ -32,10 +36,13 @@ class Header extends Component{
       let Screen = !this.state.Screen
       this.setState({Screen})
     });
+    let title = this.getTitle(categoryList)
+    this.setState({title})
   }
   componentWillUnmount(){
     clearInterval(this.intervalId)
   }
+
   //实现通过ip对应出adcode(城市编码) 然后获取该城市天气信息
   reqMyWeather = ()=>{
     reqIp().then((adcode)=>{
@@ -62,19 +69,39 @@ class Header extends Component{
   screenFull = ()=>{
     screenfull.toggle()
   }
+  //递归遍历通过路由最后一个字符串来匹配相应的标题
+  getTitle = (List)=>{
+    const selectKey = this.props.history.location.pathname.split('/').splice(2).reverse()[0]
+    let title
+    List.forEach((item)=>{
+      if(item.children instanceof Array){
+        let tempTitle = this.getTitle(item.children)
+        if(tempTitle){
+          title = tempTitle
+        }
+      }else{
+        if(item.key === selectKey){
+          title = item.title
+        }
+      }
+    })
+    return title
+  }
+
   render(){
     const {weather,temperature,city} = this.state.weatherObj
     const {Screen} = this.state
+    const {username} = this.props.userInfo.user
     return(
       <header className="header">
         <div className="header-top">
           <Button  size="small" onClick={this.screenFull}><Icon type={Screen?'fullscreen-exit':'fullscreen'} /></Button>
-          &nbsp;&nbsp;欢迎 admin
+          &nbsp;&nbsp;欢迎 {username}
           <Button type="link" onClick={this.layOut}>退出</Button>
         </div>
         <div className="header-bottom">
           <div className="header-bottom-left">
-            <span>{this.props.history.location.pathname}</span>
+            <span>{this.props.menuInfo.title ||this.state.title}</span>
           </div>
           <div className="header-bottom-right">
             {this.state.time}&nbsp;&nbsp;
