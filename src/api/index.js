@@ -42,3 +42,5 @@ export const reqWeather = (adcode)=>{
   })
 }
 export const reqCategory = ()=> myAxios.get(`${BASEURL}/manage/category/list`)
+export const reqUpdateCategory = (categoryId,categoryName)=>myAxios.post(`${BASEURL}/manage/category/update`,{categoryId,categoryName})
+export const reqAddCategory = (categoryName)=> myAxios.post(`${BASEURL}/manage/category/add`,{categoryName})

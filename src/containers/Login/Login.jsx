@@ -80,7 +80,7 @@ class Login extends Component{
                 }
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
+                <Button style={{height:'38px'}} type="primary" htmlType="submit" className="login-form-button">
                   登录
                 </Button>
               </Form.Item>
