@@ -38,31 +38,31 @@ let categoryList = [
     path: '/admin/role'
   },
 
-  {
-    title: '图形图表',
-    key: 'charts',
-    icon: 'area-chart',
-    children: [
-      {
-        title: '柱形图',
-        key: 'bar',
-        icon: 'bar-chart',
-        path: '/admin/charts/bar'
-      },
-      {
-        title: '折线图',
-        key: 'line',
-        icon: 'line-chart',
-        path: '/admin/charts/line'
-      },
-      {
-        title: '饼图',
-        key:  'pie',
-        icon: 'pie-chart',
-        path: '/admin/charts/pie'
-      },
-    ]
-  },
+  // {
+  //   title: '图形图表',
+  //   key: 'charts',
+  //   icon: 'area-chart',
+  //   children: [
+  //     {
+  //       title: '柱形图',
+  //       key: 'bar',
+  //       icon: 'bar-chart',
+  //       path: '/admin/charts/bar'
+  //     },
+  //     {
+  //       title: '折线图',
+  //       key: 'line',
+  //       icon: 'line-chart',
+  //       path: '/admin/charts/line'
+  //     },
+  //     {
+  //       title: '饼图',
+  //       key:  'pie',
+  //       icon: 'pie-chart',
+  //       path: '/admin/charts/pie'
+  //     },
+  //   ]
+  // },
 ]
 
 export default categoryList

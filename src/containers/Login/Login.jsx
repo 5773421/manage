@@ -22,7 +22,7 @@ class Login extends Component{
         const {status,msg,data} = result
         if(status === 0){
           this.props.saveUserInfo(data)
-          this.props.history.replace('/admin')
+          this.props.history.replace('/admin/home')
         }else{
           message.warning(msg,1)
         }
@@ -89,7 +89,7 @@ class Login extends Component{
         </div>
       )
     }else{
-      return <Redirect to="/admin"/>
+      return <Redirect to="/admin/home"/>
     } 
   }
 }

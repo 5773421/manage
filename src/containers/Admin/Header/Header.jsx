@@ -71,7 +71,8 @@ class Header extends Component{
   }
   //递归遍历通过路由最后一个字符串来匹配相应的标题
   getTitle = (List)=>{
-    const selectKey = this.props.history.location.pathname.split('/').splice(2).reverse()[0]
+    const pathName = this.props.history.location.pathname.split('/').splice(2).reverse()
+    const selectKey = pathName.indexOf('product') !== -1 ? 'product' : pathName[0]
     let title
     List.forEach((item)=>{
       if(item.children instanceof Array){

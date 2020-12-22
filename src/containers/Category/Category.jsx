@@ -1,6 +1,12 @@
 import {Component} from 'react'
 import {Table,Button,Modal,Card,Icon,Input,Form, message} from 'antd'
 import {reqCategory,reqUpdateCategory,reqAddCategory} from '../../api'
+import {connect} from 'react-redux'
+import {createSaveCateListAction} from '../../redux/actions/category.js'
+
+@connect(state=>({}),{
+  saveCategoryList:createSaveCateListAction  
+})
 @Form.create()
 class Category extends Component{
   state = {
@@ -20,6 +26,7 @@ class Category extends Component{
     const {status,data,msg} = result
     if(status === 0){
       this.setState({categoryList:data.reverse(),loading:false})
+      this.props.saveCategoryList(data)
     }else{
       message.error(msg,1)
     }
@@ -39,14 +46,14 @@ class Category extends Component{
   toAdd = async(currentName)=>{
     let result = await reqAddCategory(currentName)
     const {status,data,msg} = result
-    console.log(this.state.categoryList)
     let categoryList = [...this.state.categoryList]
     if(status === 0){
       categoryList.unshift(data)
       message.success('新增分类成功',1)
       this.setState({visible:false,
-        categoryList  
+        categoryList
       })
+      this.props.saveCategoryList(data)
       this.props.form.resetFields()
     }else{
       message.error(msg,1)
